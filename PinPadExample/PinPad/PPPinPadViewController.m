@@ -41,7 +41,6 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 6.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self addCircles];
 	
     pinLabel.text = self.pinTitle ? :@"Enter PIN";
     pinErrorLabel.text = self.errorTitle ? : @"PIN number is not correct";
@@ -57,6 +56,11 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 6.0f;
     }
     
     
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [self addCircles];
 }
 
 - (void)didReceiveMemoryWarning
