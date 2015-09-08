@@ -14,8 +14,8 @@
     
     PPPinCircleView * circleView = [[PPPinCircleView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, radius*2.0f, radius*2.0f)];
     circleView.layer.cornerRadius = radius;
-    circleView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5].CGColor;
-    circleView.layer.borderWidth = 2.0f;
+    circleView.layer.borderColor =  [UIColor colorWithRed:6.0/256 green:142.0/256 blue:218.0/256 alpha:0.5].CGColor;
+    circleView.layer.borderWidth = 1.0f;
     return circleView;
     
 }

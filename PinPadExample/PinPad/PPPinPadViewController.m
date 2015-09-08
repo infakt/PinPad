@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, settingNewPinState) {
 @property (weak, nonatomic) IBOutlet    UILabel             *laInstructionsLabel;
 @end
 
-static  CGFloat kVTPinPadViewControllerCircleRadius = 6.0f;
+static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
 @implementation PPPinPadViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -242,12 +242,14 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 6.0f;
         _circleViewList = [NSMutableArray array];
         
         CGFloat neededWidth =  [self pinLenght] * kVTPinPadViewControllerCircleRadius;
-        CGFloat shiftBetweenCircle = (_pinCirclesView.frame.size.width - neededWidth )/([self pinLenght] +2);
+//        CGFloat shiftBetweenCircle = (_pinCirclesView.frame.size.width - neededWidth )/([self pinLenght] +2);
+        CGFloat shiftBetweenCircle = kVTPinPadViewControllerCircleRadius * 3.0f;
         CGFloat indent= 1.5* shiftBetweenCircle;
-        if(shiftBetweenCircle > kVTPinPadViewControllerCircleRadius * 5.0f) {
-            shiftBetweenCircle = kVTPinPadViewControllerCircleRadius * 5.0f;
-            indent = (_pinCirclesView.frame.size.width - neededWidth  - shiftBetweenCircle *([self pinLenght] > 1 ? [self pinLenght]-1 : 0))/2;
-        }
+        indent = (_pinCirclesView.frame.size.width - neededWidth  - shiftBetweenCircle *([self pinLenght] > 1 ? [self pinLenght]-1 : 0))/2;
+//        if(shiftBetweenCircle > kVTPinPadViewControllerCircleRadius * 5.0f) {
+//            shiftBetweenCircle = kVTPinPadViewControllerCircleRadius * 4.0f;
+//            indent = (_pinCirclesView.frame.size.width - neededWidth  - shiftBetweenCircle *([self pinLenght] > 1 ? [self pinLenght]-1 : 0))/2;
+//        }
         for(int i=0; i < [self pinLenght]; i++) {
             PPPinCircleView * circleView = [PPPinCircleView circleView:kVTPinPadViewControllerCircleRadius];
             CGRect circleFrame = circleView.frame;
@@ -265,6 +267,7 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 6.0f;
         return;
     PPPinCircleView *circleView = [_circleViewList objectAtIndex:symbolIndex];
     circleView.backgroundColor = [UIColor whiteColor];
+    circleView.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 -(void)shakeCircles:(UIView *)theOneYouWannaShake

@@ -23,22 +23,29 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 
+- (UIColor*) highlightColor
+{
+    return [UIColor colorWithRed:6.0/256 green:142.0/256 blue:218.0/256 alpha:1];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
     [super drawRect:rect];
     [self.layer setCornerRadius:CGRectGetHeight(rect)/2.0];
-    self.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5].CGColor;
-    self.layer.borderWidth = 2.0f;
+    self.layer.borderColor = [[self highlightColor] colorWithAlphaComponent:0.5].CGColor;
+    self.layer.borderWidth = 1.0f;
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
     
     if(highlighted) {
-        self.layer.borderColor = [self titleColorForState:UIControlStateHighlighted].CGColor;
+        self.layer.borderColor = [self highlightColor].CGColor;
+        self.layer.backgroundColor = [self highlightColor].CGColor;
     }
     else {
-        self.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5].CGColor;
+        self.layer.backgroundColor = [UIColor clearColor].CGColor;
+        self.layer.borderColor = [[self highlightColor] colorWithAlphaComponent:0.5].CGColor;
     }
     
 }
