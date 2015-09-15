@@ -272,15 +272,17 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
 
 -(void)shakeCircles:(UIView *)theOneYouWannaShake
 {
-    [UIView animateWithDuration:0.03 animations:^
+    [UIView animateWithDuration:0.07 animations:^
      {
-         theOneYouWannaShake.transform = CGAffineTransformMakeTranslation(5*_direction, 0);
+         theOneYouWannaShake.transform = CGAffineTransformMakeTranslation(25*_direction, 0);
      }
                      completion:^(BOOL finished)
      {
-         if(_shakes >= 15)
+         if(_shakes >= 5)
          {
-             theOneYouWannaShake.transform = CGAffineTransformIdentity;
+             [UIView animateWithDuration:0.1 animations:^{
+                 theOneYouWannaShake.transform = CGAffineTransformIdentity;
+             }];
              [self resetClick:nil];
              return;
          }
