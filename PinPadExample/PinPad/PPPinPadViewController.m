@@ -54,8 +54,6 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
         backgroundImageView.hidden = YES;
         self.view.backgroundColor = self.backgroundColor;
     }
-    
-    
 }
 
 - (void)viewDidLayoutSubviews{
@@ -245,7 +243,8 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
 //        CGFloat shiftBetweenCircle = (_pinCirclesView.frame.size.width - neededWidth )/([self pinLenght] +2);
         CGFloat shiftBetweenCircle = kVTPinPadViewControllerCircleRadius * 3.0f;
         CGFloat indent= 1.5* shiftBetweenCircle;
-        indent = (_pinCirclesView.frame.size.width - neededWidth  - shiftBetweenCircle *([self pinLenght] > 1 ? [self pinLenght]-1 : 0))/2;
+        
+        indent = (self.view.frame.size.width - neededWidth  - shiftBetweenCircle *([self pinLenght] > 1 ? [self pinLenght]-1 : 0))/2;
 //        if(shiftBetweenCircle > kVTPinPadViewControllerCircleRadius * 5.0f) {
 //            shiftBetweenCircle = kVTPinPadViewControllerCircleRadius * 4.0f;
 //            indent = (_pinCirclesView.frame.size.width - neededWidth  - shiftBetweenCircle *([self pinLenght] > 1 ? [self pinLenght]-1 : 0))/2;
