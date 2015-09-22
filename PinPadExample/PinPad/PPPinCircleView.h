@@ -11,5 +11,6 @@
 @interface PPPinCircleView : UIImageView
 
 + (instancetype)circleView:(CGFloat)radius;
+- (void)reset;
 
 @end

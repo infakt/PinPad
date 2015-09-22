@@ -15,6 +15,7 @@
 - (NSInteger)pinLenght;
 @optional
 - (void)pinPadSuccessPin;
+- (void)pinPadDidChangeEnteredCharacters:(NSString*) enteredChars;
 - (void)pinPadWillHide;
 - (void)pinPadDidHide;
 - (void)userPassCode:(NSString *)newPassCode;
@@ -43,5 +44,7 @@
 @property (nonatomic, strong) UIColor *backgroundColor;
 
 @property (nonatomic) BOOL isSettingPinCode;
+
+- (void)deleteBackwards;
 
 @end

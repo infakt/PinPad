@@ -58,7 +58,9 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [self addCircles];
+    if(!_inputPin || _inputPin.length == 0) {
+        [self addCircles];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,6 +146,16 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
     _inputPin = [NSMutableString string];
 }
 
+- (void)deleteBackwards {
+    if(_inputPin && _inputPin.length > 0){
+        [_inputPin deleteCharactersInRange:NSMakeRange(_inputPin.length-1, 1)];
+        [self unfillCircle:_inputPin.length];
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pinPadDidChangeEnteredCharacters:)]) {
+        [self.delegate pinPadDidChangeEnteredCharacters: _inputPin];
+    }
+}
 
 - (IBAction)numberButtonClick:(id)sender {
     if(!_inputPin) {
@@ -204,6 +216,10 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
             [self changeStatusBarHidden:NO];
             NSLog(@"Not correct pin");
         }
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pinPadDidChangeEnteredCharacters:)]) {
+        [self.delegate pinPadDidChangeEnteredCharacters: _inputPin];
     }
 }
 
@@ -268,6 +284,14 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
     circleView.backgroundColor = [UIColor whiteColor];
     circleView.layer.borderColor = [UIColor whiteColor].CGColor;
 }
+
+- (void)unfillCircle:(NSInteger)symbolIndex {
+    if(symbolIndex>=_circleViewList.count)
+        return;
+    PPPinCircleView *circleView = [_circleViewList objectAtIndex:symbolIndex];
+    [circleView reset];
+}
+
 
 -(void)shakeCircles:(UIView *)theOneYouWannaShake
 {
