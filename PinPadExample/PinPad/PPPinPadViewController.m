@@ -144,6 +144,9 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
     self.newPinState    = settingMewPinStateFisrt;
     self.laInstructionsLabel.text = NSLocalizedString(@"Enter PassCode", @"");
     _inputPin = [NSMutableString string];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pinPadDidChangeEnteredCharacters:)]) {
+        [self.delegate pinPadDidChangeEnteredCharacters: _inputPin];
+    }
 }
 
 - (void)deleteBackwards {
