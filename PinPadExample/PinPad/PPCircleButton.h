@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PPCircleButton : UIButton
+- (UIColor*) highlightColor;
 
 @end

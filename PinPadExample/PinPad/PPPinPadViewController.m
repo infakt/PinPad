@@ -274,6 +274,8 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
             circleFrame.origin.x = indent + i * kVTPinPadViewControllerCircleRadius + i*shiftBetweenCircle;
             circleFrame.origin.y = (CGRectGetHeight(_pinCirclesView.frame) - kVTPinPadViewControllerCircleRadius)/2.0f;
             circleView.frame = circleFrame;
+            
+            circleView.layer.borderColor = [[self view] tintColor].CGColor;
             [_pinCirclesView addSubview:circleView];
             [_circleViewList addObject:circleView];
         }
@@ -284,8 +286,8 @@ static  CGFloat kVTPinPadViewControllerCircleRadius = 7.0f;
     if(symbolIndex>=_circleViewList.count)
         return;
     PPPinCircleView *circleView = [_circleViewList objectAtIndex:symbolIndex];
-    circleView.backgroundColor = [UIColor whiteColor];
-    circleView.layer.borderColor = [UIColor whiteColor].CGColor;
+    circleView.backgroundColor = [[self view] tintColor];
+    circleView.layer.borderColor = [[self view] tintColor].CGColor;
 }
 
 - (void)unfillCircle:(NSInteger)symbolIndex {
